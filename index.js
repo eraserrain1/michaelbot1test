@@ -23,7 +23,11 @@ bot.on('ready', async () => {
 bot.on('message', msg => {
     if(msg.author.bot != true)
     {
-        
+        if(msg.content.startsWith(prefix))
+        {
+            console.log(`Command: ${msg.author.tag} : ${msg.content}`);
+            let msgsplt = msg.content.split(' ');
+        }
     }
     else
     {
