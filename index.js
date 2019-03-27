@@ -12,13 +12,27 @@ if (token.length < 1)
 
 const bot = new Discord.Client({disableEveryone: true});
 
-// const commands = require('./commands/');
+// Commands:
+const pingPong = require('./commands/pingpong');
 
 bot.on('ready', async () => {
     console.log(`${bot.user.tag} is online!`);
     bot.user.setPresence({ game: { name: 'Your Heart! ♥ ツ' } });
 });
 
+bot.on('message', msg => {
+    if(msg.author.bot != true)
+    {
+        
+    }
+    else
+    {
+        return;
+    }
+});
+
+
+/*
 bot.on('message', async msg => {
     console.log(`message detetected`);
 
@@ -45,5 +59,6 @@ bot.on('message', async msg => {
         msg.reply(msg.members.first().avatarURL);
     }
 })
+*/
 
 bot.login(token);
