@@ -40,11 +40,12 @@ client.on('message', msg => {
         {
             console.log(`Command: ${msg.author.tag} : ${msg.content}`);
             let msgsplt = msg.content.split(' ');
+            let msgCommand = msg.splt[0].substring(prefix.length);
             {
                 // Command switcher
-                switch(msgsplt[0].toLowerCase())
+                switch(msgCommand.toLowerCase())
                 {
-                    case prefix + 'ping':
+                    case 'ping':
                         pingPong.pong(msg);
                         break;
                     default:
@@ -52,6 +53,8 @@ client.on('message', msg => {
                         break;
                 }
             }
+            // reset array.
+            msgsplt = [];
         }
     }
     else
