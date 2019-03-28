@@ -1,3 +1,11 @@
+/*
+Author: Michael
+Project: michaelbot1test
+Description: Practicing and Testing dicord bot coding.
+*/
+
+
+// Important stuffs:
 const botconfig = require('./botconfig.json');
 const Discord = require('discord.js');
 
@@ -12,21 +20,38 @@ if (token.length < 1)
 
 const bot = new Discord.Client({disableEveryone: true});
 
-// Commands:
+// Commands
 const pingPong = require('./commands/pingpong');
 
+// Bot turns on
 bot.on('ready', async () => {
     console.log(`${bot.user.tag} is online!`);
     bot.user.setPresence({ game: { name: 'Your Heart! ♥ ツ' } });
 });
 
+// Bot trigggers on message
 bot.on('message', msg => {
+    // Ignores messages if bot is the one that sends them.
     if(msg.author.bot != true)
     {
+        // Checks for command prefix
         if(msg.content.startsWith(prefix))
         {
             console.log(`Command: ${msg.author.tag} : ${msg.content}`);
             let msgsplt = msg.content.split(' ');
+            {
+                // Command switcher
+                switch(msgsplt[0].toLowerCase())
+                {
+                    case prefix + 'ping':
+                        pingPong.pong(msg);
+                        break;
+                    default:
+                        msg.reply("No command found, please try again.");
+                        break;
+
+                }
+            }
         }
     }
     else
