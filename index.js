@@ -23,6 +23,7 @@ const client = new Discord.Client({disableEveryone: true});
 
 // Commands
 const pingPong = require('./commands/pingpong');
+const avatar = require('./commands/avatar');
 
 // Bot turns on
 client.on('ready', async () => {
@@ -40,13 +41,17 @@ client.on('message', msg => {
         {
             console.log(`Command: ${msg.author.tag} : ${msg.content}`);
             let msgsplt = msg.content.split(' ');
-            let msgCommand = msg.splt[0].substring(prefix.length);
+            let msgCommand = msgsplt[0].substring(prefix.length);
+
             {
                 // Command switcher
                 switch(msgCommand.toLowerCase())
                 {
                     case 'ping':
                         pingPong.pong(msg);
+                        break;
+                    case 'avatar':
+                        avatar.get(msg, msgsplt, client);
                         break;
                     default:
                         msg.reply("No command found, please try again.");
