@@ -5,7 +5,7 @@ module.exports = {
             msg.reply(msg.author.avatarURL);
         }
         else if(msgsplt[1] != null) {
-            let name = msgsplt[1].substring(1, msgsplt[1].length);
+            let name = msg.mentions.members.first();
             if(client.fetchUser(name)) {
                 msg.reply(name.avatarURL);
             }
